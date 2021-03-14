@@ -60,9 +60,9 @@ set_target_properties(
              CMAKE_VISIBILITY_INLINES_HIDDEN ${BUILD_SHARED_LIBS}
 )
 
-option(WarningsAsErrors "Be realy pedantic!" YES)
+option(WarningsAsErrors "Be really pedantic!" YES)
 if(WarningsAsErrors)
-  include(${CMAKE_CURRENT_LIST_DIR}/cmake/WarningsAsErrors.cmake)
+  include(cmake/WarningsAsErrors.cmake)
 endif()
 
 # being a cross-platform target, we enforce standards conformance on MSVC

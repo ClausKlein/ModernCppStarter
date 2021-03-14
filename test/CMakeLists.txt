@@ -40,18 +40,8 @@ CPMAddPackage(
 file(GLOB sources CONFIGURE_DEPENDS source/*.cpp)
 add_executable(GreeterTests ${sources})
 target_link_libraries(GreeterTests doctest::doctest Greeter::Greeter)
-
+target_compile_definitions(GreeterTests PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
 set_target_properties(GreeterTests PROPERTIES CXX_STANDARD ${CMAKE_CXX_STANDARD})
-
-# enable compiler warnings
-if(NOT TEST_INSTALLED_VERSION)
-  if(CMAKE_CXX_COMPILER_ID MATCHES "Clang" OR CMAKE_CXX_COMPILER_ID MATCHES "GNU")
-    target_compile_options(Greeter PUBLIC -Wall -Wpedantic -Wextra -Werror)
-  elseif(MSVC)
-    target_compile_options(Greeter PUBLIC /W4 /WX)
-    target_compile_definitions(GreeterTests PUBLIC DOCTEST_CONFIG_USE_STD_HEADERS)
-  endif()
-endif()
 
 # ---- Add GreeterTests ----
 
@@ -67,7 +57,9 @@ add_test(NAME greeterTests COMMAND GreeterTests)
 
 # ---- code coverage ----
 
-if(ENABLE_TEST_COVERAGE AND NOT Greeter_FOUND)
-  target_compile_options(Greeter PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
-  target_link_options(Greeter PUBLIC -fprofile-arcs -ftest-coverage)
+if(NOT MSVC)
+  if(ENABLE_TEST_COVERAGE AND "${CMAKE_BUILD_TYPE}" STREQUAL Debug)
+    target_compile_options(Greeter PUBLIC -O0 -g -fprofile-arcs -ftest-coverage)
+    target_link_options(Greeter PUBLIC -fprofile-arcs -ftest-coverage)
+  endif()
 endif()
