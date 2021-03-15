@@ -56,10 +56,10 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS source/*.cpp)
 add_library(Greeter ${headers} ${sources})
 set_target_properties(Greeter PROPERTIES CXX_STANDARD ${CMAKE_CXX_STANDARD})
 
-# Note: for SameMajorVersion upgrade stategie
+# Note: for SameMajorVersion upgrade stategy
 set_target_properties(
   Greeter
-  PROPERTIES SOVERSION 1
+  PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR}
              VERSION ${PROJECT_VERSION}
              VISIBILITY_INLINES_HIDDEN ${BUILD_SHARED_LIBS}
              CMAKE_VISIBILITY_INLINES_HIDDEN ${BUILD_SHARED_LIBS}
