@@ -28,7 +28,12 @@ include(cmake/options.cmake)
 include(cmake/CPM.cmake)
 
 # PackageProject.cmake will be used to make our target installable
-CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.4.1")
+CPMAddPackage(
+  NAME PackageProject.cmake
+  GITHUB_REPOSITORY ClausKlein/PackageProject.cmake
+  # VERSION CK1.6.0
+  GIT_TAG 4ac95860ba72bb0eb324c4d63e35fb59be3bd50d
+)
 
 CPMAddPackage(
   NAME fmt
@@ -88,13 +93,6 @@ target_include_directories(
 string(TOLOWER ${PROJECT_NAME}/version.h VERSION_HEADER_LOCATION)
 string(TOLOWER ${PROJECT_NAME}/greeter_export.h EXPORT_HEADER_LOCATION)
 
-# TODO: should be done in packageProject()
-include(GenerateExportHeader)
-generate_export_header(
-  ${PROJECT_NAME} EXPORT_FILE_NAME PackageProjectInclude/${EXPORT_HEADER_LOCATION}
-)
-
-# Note: the export header will be installed while installing the version header! CK
 packageProject(
   NAME ${PROJECT_NAME}
   VERSION ${PROJECT_VERSION}
@@ -103,6 +101,7 @@ packageProject(
   INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include
   INCLUDE_DESTINATION ${INCLUDE_INSTALL_DIR}
   VERSION_HEADER ${VERSION_HEADER_LOCATION}
+  EXPORT_HEADER ${EXPORT_HEADER_LOCATION}
   COMPATIBILITY SameMajorVersion
   # XXX DEPENDENCIES "fmt 7.1.3"
 )

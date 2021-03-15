@@ -70,7 +70,7 @@ tidy: all
 gcov: all
 	mkdir -p $(CURDIR)/reports/gcov
 	gcovr -r . --html-title $(PROJECT_NAME) --html-detail $(CURDIR)/reports/gcov/index.html
-	perl -i.bak -pe 's#class="headerValue">./<#class="headerValue">$(PROJECT_NAME)<#g;' $(CURDIR)/reports/gcov/index.html
+	perl -i.bak -pe 's#class="headerValue">./<#class="headerValue">$(PROJECT_NAME)<#g;' $(CURDIR)/reports/gcov/*.html
 
 # GenerateDocs
 doc:
