@@ -76,8 +76,8 @@ target_compile_options(Greeter PUBLIC $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permiss
 # Link dependencies Note: fmt::fmt is not suppoting shared library builds! CK
 
 # Either:
-target_link_libraries(Greeter PUBLIC $<BUILD_INTERFACE:fmt::fmt-header-only>)
-# Or: target_link_libraries(Greeter PUBLIC fmt::fmt)
+target_link_libraries(Greeter PRIVATE $<BUILD_INTERFACE:fmt::fmt-header-only>)
+# Or: target_link_libraries(Greeter PRIVATE fmt::fmt)
 
 set(INCLUDE_INSTALL_DIR include/${PROJECT_NAME}-${PROJECT_VERSION})
 target_include_directories(
