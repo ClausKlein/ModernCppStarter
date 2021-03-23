@@ -7,7 +7,20 @@
   BreakBeforeBraces: Attach
   ColumnLimit: '100'
   ConstructorInitializerAllOnOneLineOrOnePerLine: 'true'
+  #
   IncludeBlocks: Regroup
+  IncludeCategories:
+  - Regex: '^"(llvm|llvm-c|clang|clang-c)/'
+    Priority: 2
+  - Regex: '^<(Poco|folly|gsl|asio|doctest|zmqpp|boost|fmt|json|spdlog|openssl)/'
+    Priority: 3
+  - Regex: '<[_[:alnum:]./]+>'
+    Priority: 4
+  # all other headers first!
+  - Regex: '.*'
+    Priority: 1
+  IncludeIsMainRegex: '(_test)?$'
+  #
   IndentPPDirectives: AfterHash
   IndentWidth: '2'
   NamespaceIndentation: All

@@ -35,7 +35,7 @@ This template is the result of learnings from many previous projects and should 
 ### Adjust the template to your needs
 
 - Use this repo [as a template](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template).
-- Replace all occurrences of "Greeter" in the relevant CMakeLists.txt with the name of your project
+- Replace all occurrences of "Greeter" in the relevant `CMakeLists.txt` with the name of your project
   - Capitalization matters here: `Greeter` means the name of the project, while `greeter` is used in file names.
   - Remember to rename the `include/greeter` directory to use your project's lowercase name and update all relevant `#include`s accordingly.
 - Replace the source files with your own
@@ -54,7 +54,7 @@ During development it is usually convenient to [build all subprojects at once](#
 Use the following command to build and run the executable target.
 
 ```bash
-cmake -Hstandalone -Bbuild/standalone
+cmake -S standalone -B build/standalone
 cmake --build build/standalone
 ./build/standalone/Greeter --help
 ```
@@ -64,7 +64,7 @@ cmake --build build/standalone
 Use the following commands from the project's root directory to run the test suite.
 
 ```bash
-cmake -Htest -Bbuild/test
+cmake -S test -B build/test
 cmake --build build/test
 CTEST_OUTPUT_ON_FAILURE=1 cmake --build build/test --target test
 
@@ -80,7 +80,7 @@ Use the following commands from the project's root directory to check and fix C+
 This requires _clang-format_, _cmake-format_ and _pyyaml_ to be installed on the current system.
 
 ```bash
-cmake -Htest -Bbuild/test
+cmake -S test -B build/test
 
 # view changes
 cmake --build build/test --target format
@@ -97,7 +97,7 @@ The documentation is automatically built and [published](https://thelartians.git
 To manually build documentation, call the following command.
 
 ```bash
-cmake -Hdocumentation -Bbuild/doc
+cmake -S documentation -B build/doc
 cmake --build build/doc --target GenerateDocs
 # view the docs
 open build/doc/doxygen/html/index.html
@@ -111,7 +111,7 @@ The project also includes an `all` directory that allows building all targets at
 This is useful during development, as it exposes all subprojects to your IDE and avoids redundant builds of the library.
 
 ```bash
-cmake -Hall -Bbuild
+cmake -S all -B build
 cmake --build build
 
 # run tests
