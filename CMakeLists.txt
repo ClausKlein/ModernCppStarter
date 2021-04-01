@@ -28,12 +28,7 @@ include(cmake/options.cmake)
 include(cmake/CPM.cmake)
 
 # PackageProject.cmake will be used to make our target installable
-CPMAddPackage(
-  NAME PackageProject.cmake
-  GITHUB_REPOSITORY ClausKlein/PackageProject.cmake
-  # VERSION CK1.6.0
-  GIT_TAG 4ac95860ba72bb0eb324c4d63e35fb59be3bd50d
-)
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.7.0")
 
 CPMAddPackage(
   NAME fmt
