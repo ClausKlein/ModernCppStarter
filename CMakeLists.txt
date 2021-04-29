@@ -66,7 +66,7 @@ if(WarningsAsErrors)
 endif()
 
 # being a cross-platform target, we enforce standards conformance on MSVC
-target_compile_options(Greeter PUBLIC $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive>)
+target_compile_options(Greeter PUBLIC $<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->)
 
 # Link dependencies Note: fmt::fmt is not suppoting shared library builds! CK
 
